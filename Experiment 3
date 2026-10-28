@@ -1,0 +1,82 @@
+# Experiment 3(a): Using `date` and `who` Commands with Output Redirection
+
+## Aim - To use the `date` and `who` commands and redirect command output into a file.
+
+## Commands
+```bash
+date
+who
+date; who
+date > who.txt
+cat who.txt
+```
+
+## Explanation
+- `date`: Displays the current date and time.
+- `who`: Displays information about currently logged-in users.
+- `date; who`: Executes both commands sequentially.
+- `date > who.txt`: Redirects the output of `date` into `who.txt`. Existing contents are overwritten.
+- `cat who.txt`: Displays the contents of the file.
+
+To save the output of both commands in one file:
+
+```bash
+{ date; who; } > output.txt
+```
+
+## Procedure
+1. Open the terminal.
+2. Execute the `date` command.
+3. Execute the `who` command.
+4. Run `date; who`.
+5. Redirect the date output using `date > who.txt`.
+6. View the saved output using `cat who.txt`.
+
+## Result - The `date` and `who` commands were executed successfully. Output redirection was used to save command output in a text file.
+
+
+# Experiment 3(b): Using the `sed` Command
+
+## Aim - To use the `sed` command to search for and replace text in a file.
+
+## Command Syntax
+```bash
+sed 's/old-text/new-text/' filename
+```
+
+## Explanation
+- `sed`: A stream editor used to modify text.
+- `s`: Specifies the substitution operation.
+- `old-text`: The text to search for.
+- `new-text`: The replacement text.
+- `^`: Matches the beginning of a line.
+- `$`: Matches the end of a line.
+- `.*`: Matches a sequence of characters.
+
+By default, `sed` replaces the first match on each line. Adding `g` replaces all matches.
+
+## Procedure
+1. Create a text file:
+   ```bash
+   cat > name.txt
+   ```
+2. Enter a few names and press `Ctrl+D` to save.
+3. Display the file:
+   ```bash
+   cat name.txt
+   ```
+4. Replace the first lowercase `a` with uppercase `A` on each line:
+   ```bash
+   sed 's/a/A/' name.txt
+   ```
+5. Replace the last lowercase `a` on each line with `X`:
+   ```bash
+   sed 's/\(.*\)a/\1X/' name.txt
+   ```
+6. Modify the file directly:
+   ```bash
+   sed -i 's/a/A/' name.txt
+   ```
+
+## Result - The `sed` command was used to search for and replace text in a file. The modified output was displayed successfully.
+
