@@ -1,0 +1,81 @@
+## Experiment 5(a): Shell Script to Check Whether an Argument Is a File or Directory
+
+Date: 07/09/26 | Experiment No.: 5(a)
+
+### Experiment - Write a shell script that takes a command-line argument and reports whether it is a file or a directory.
+
+### Requirements - Ubuntu/Linux terminal, Nano text editor.
+
+### Theory- Shell scripting is the process of writing a series of commands in a file that the operating system shell executes automatically. It is mainly used to automate tasks.
+In shell scripting, command-line arguments are values passed to a program or shell script while running it from the terminal. They are accessed using `$1`, `$2`, etc.
+The `$f` operator checks whether the given argument is a file, while `-d` checks whether it is a directory. `$#` gives the number of arguments passed to the script.
+
+### Program
+
+```
+#!/bin/bash
+
+if [ -f "$1" ]
+then
+    echo "$1 is a file"
+elif [ "$#" -eq 0 ]
+then
+    echo "Please pass the argument"
+elif [ -d "$1" ]
+then
+    echo "$1 is a Directory"
+else
+    echo "$1 does not exists"
+fi
+```
+
+### Sample Output
+
+```
+$ bash exp5.sh data1.txt
+data1.txt is a file
+
+$ bash exp5.sh
+Please pass the argument
+```
+
+### Result - The shell script successfully checks whether the given argument is a file or directory.
+
+
+## Experiment 5(b): Shell Script to Convert Filenames to Uppercase
+
+Date: 09/09/26 | Experiment No.: 5(b)
+
+### Experiment - Write a shell script that takes filenames as command-line arguments and converts all of them to uppercase.
+
+### Theory - Command-line arguments are values passed to the script during execution. `$@` represents all the arguments passed to the script. The `tr` command converts
+lowercase letters to uppercase, and `mv` is used to rename the file.
+
+### Commands
+
+```
+$ ls
+$ nano 5B.SH
+$ bash 5B.SH
+$ bash 5B.SH ak.txt
+$ bash 5B.SH final.txt
+```
+
+### Nano Editor Program
+
+```
+#!/bin/bash
+
+if [ -f "$1" ]
+then
+    mv "$1" "$(echo "$1" | tr '[:lower:]' '[:upper:]')"
+    echo "File name changed to uppercase"
+elif [ "$#" -eq 0 ]
+then
+    echo "Please pass the argument"
+else
+    echo "$1 does not exists"
+fi
+```
+
+### Result - The shell script was successfully executed to convert the given filename into uppercase.
