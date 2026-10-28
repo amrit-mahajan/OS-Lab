@@ -1,0 +1,164 @@
+## Experiment 6(a): Shell Script to Calculate the Working Time of a Specified User
+Date: 14/09/26 | Experiment No.: 6(a)
+
+### Experiment - Write a shell script that determines the period for which a specified user is working on the system.
+
+### Theory - The `who` command displays currently logged-in users. `awk` is used to find the specified user and extract their login date and time. 
+The `date` command calculates the total time for which the user has been logged in.
+
+### Procedure
+1. Create a shell script using Nano.
+2. Enter the username as input.
+3. Use `awk` and `who` to find the user's login time.
+4. Calculate the difference between the current time and login time.
+5. Display the total working time in hours and minutes.
+6. Save and execute the script.
+
+### Program
+
+```
+#!/bin/bash
+
+echo "Currently working users are"
+echo ""
+who
+echo ""
+
+read -p "Enter username: " user
+
+login_time=$(who | awk -v u="$user" '$1 == u {print $3, $4; exit}')
+
+if [ -z "$login_time" ]
+then
+    echo "User is not currently logged in."
+else
+    echo "Login Time: $login_time"
+
+    loginsec=$(date -d "$login_time" +%s)
+    currentsec=$(date +%s)
+
+    total=$((currentsec - loginsec))
+
+    hours=$((total / 3600))
+    mins=$((total % 3600 / 60))
+
+    echo "Total Working Time: $hours hours $mins minutes"
+fi
+```
+
+### Important Commands Used
+- `who` — Displays currently logged-in users.
+- `read` — Takes the username as input.
+- `awk` — Searches and extracts login information.
+- `date` — Converts and calculates time.
+- `$1` — First field or argument, depending on context.
+- `$(...)` — Command substitution.
+- `-z` — Checks whether a string is empty.
+
+### Result - The shell script successfully determines and displays the login time and total working time of the specified currently logged-in user.
+
+
+## Experiment 6(b): Display Lines Between Specified Start and End Line Numbers
+Date: 14/09/26 | Experiment No.: 6(b)
+
+### Experiment - Write a shell script that displays all the lines between the start and end line numbers passed as arguments.
+
+### Theory - The `sed` command is used to select and display a specified range of lines from a file using the `-n` and `p` options. It is also used to process text in many other ways.
+
+### Procedure
+1. Create a shell script using Nano.
+2. Pass the start line, end line and filename as command-line arguments.
+3. Store the arguments in variables.
+4. Use `sed` to display the specified range of lines.
+5. Execute the script with proper arguments.
+
+### Program
+
+```
+#!/bin/bash
+
+i="$1"
+j="$2"
+fn="$3"
+
+sed -n "${i},${j}p" "$fn"
+```
+
+### Important Commands Used
+- `$1`, `$2`, `$3` — Command-line arguments (start line, end line and filename).
+- `sed` — Stream editor for processing text.
+- `-n` — Suppresses automatic printing.
+- `p` — Prints the selected lines.
+
+### Example Execution
+```
+bash exp6b.sh 2 5 data.txt
+```
+This displays lines 2 through 5 of `data.txt`.
+
+### Result - The shell script successfully displays all lines between the specified start and end line numbers of the given file.
+
+
+## Experiment 6(c): Delete Lines Containing a Specified Word from One or More Files
+Date: 14/09/26 | Experiment No.: 6(c)
+
+### Experiment - Write a shell script that deletes all lines containing a specified word in one or more files supplied as arguments.
+
+### Theory - The `grep` command checks whether the specified word exists in a file, while `sed` is used to delete the lines containing that word.
+
+### Procedure
+1. Create a shell script using Nano.
+2. Enter the word as the first command-line argument.
+3. Pass one or more filenames as the remaining arguments.
+4. Check whether each file exists.
+5. Use `grep` to check for the word and `sed` to delete the matching lines.
+6. Execute the script with the required arguments.
+
+### Program
+
+```
+#!/bin/bash
+
+if [ "$#" -lt 2 ]
+then
+    echo "Need atleast two arguments"
+    exit 1
+fi
+
+w="$1"
+shift
+
+for file in "$@"
+do
+    if [ -f "$file" ]
+    then
+        if grep -q "$w" "$file"
+        then
+            sed -i "/$w/d" "$file"
+            echo "Deleted line containing $w from $file"
+        else
+            echo "No occurrence of $w found"
+        fi
+    else
+        echo "$file does not exist"
+    fi
+done
+```
+
+### Important Commands Used
+- `$#` — Number of command-line arguments.
+- `shift` — Removes the first argument and shifts the remaining arguments.
+- `"$@"` — All remaining arguments.
+- `-f` — Checks whether the given path is a regular file.
+- `grep -q` — Searches silently for the specified word.
+- `sed -i` — Modifies the file directly.
+- `/$w/d` — Deletes lines matching the specified pattern.
+- `for` — Processes multiple files one by one.
+
+### Example Execution
+```
+bash exp6c.sh error file1.txt file2.txt
+```
+This removes lines containing `error` from both files.
+
+### Result - The shell script successfully deletes all lines containing the specified word from the given file(s).
