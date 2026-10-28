@@ -1,0 +1,117 @@
+# Experiment 4(a): Process Management and Vim Nano Editor Commands
+
+Date: 31/08/26 | Experiment No.: 4(a)
+
+## Commands
+### 1. `sleep` — Used to pause or delay the execution of a process for a time.
+Options/Features:
+- `sleep [TIME]`: Pauses execution for a given number of seconds.
+  - Example: `sleep 5` — Sleeps for 5 seconds.
+- `sleep [TIME] &`: Runs the command in the background, without displaying the terminal output.
+  - Example: `sleep 100 &` — Starts a sleeping background process.
+- `sleep + Z`: Suspends a running foreground process using the keyboard shortcut `Ctrl + Z`.
+
+### 2. `jobs` — Displays the status of jobs running or stopped in the current shell.
+Options/Features:
+- `jobs -r`: Lists only running jobs.
+  - Example: `jobs -r` → `[2]- Running sleep 100 &`
+- `jobs -s`: Displays only stopped jobs.
+  - Example: `jobs -s` → `[1]+ Stopped sleep 100`
+- `jobs -l`: Lists process IDs (PIDs) along with other job information.
+  - Example: `jobs -l` → `[1]+ 5203 Stopped sleep 100`
+- `jobs -p`: Prints only the process IDs of the jobs.
+  - Example: `jobs -p` → `5203`
+
+### 3. `ps` — Used to display information about running processes.
+Options/Features:
+- `ps`: Displays processes of the current shell.
+  - Example: `ps` → `PID TTY TIME CMD`
+- `ps -e`: Displays all processes currently running on the system.
+  - Example: `ps -e` → Lists all processes.
+- `ps aux`: Displays detailed process information.
+  - Example: `ps aux` → Displays process details, including user, PID, CPU and memory usage.
+- `ps -ef`: Displays all processes in full-format listing.
+  - Example: `ps -ef` → Lists all processes with detailed information.
+
+### 4. `kill` — Used to send signals to a running process, usually to terminate it.
+Options/Features:
+- `kill [PID]`: Terminates a process using its process ID.
+  - Example: `kill 5203` — Terminates process 5203.
+- `kill -l`: Lists signal numbers and names.
+  - Example: `kill -l`
+- `kill -15 [PID]`: Gracefully terminates a process.
+- `kill -9 [PID]`: Forces termination of a process.
+
+### 5. `nice` — Used to start a process with a specified nice value, which affects its CPU scheduling priority.
+Options/Features:
+- `nice -n [nice value] [command]`: Sets the nice value of the process.
+- Example: `nice -n 2 sleep 200` — Starts `sleep` with a nice value of 2.
+
+### 6. `renice` — Used to change the nice value of an already running process.
+Options/Features:
+- `renice [nice value] -p [PID]`: Assigns a new nice value to an existing process.
+- Example: `renice 4 -p 5203` — Changes the nice value of process 5203.
+
+### 7. `top` — Used to display and monitor running processes in real time.
+Options/Features:
+- `top -p [PID]`: Monitors only a specific process.
+  - Example: `top -p 5203` — Displays information about process 5203.
+- `top -d [TIME]`: Sets the screen refresh delay interval.
+  - Example: `top -d 5` — Refreshes the screen every 5 seconds.
+- `top -u [USER]`: Lists tasks owned by a specified user.
+  - Example: `top -u amrit` — Displays tasks owned by the specified user.
+
+Additional shortcuts:
+- `Ctrl + K` → Cut
+- `Alt + 6` → Copy
+- `Ctrl + U` → Paste
+
+# Experiment 4(b): Working with Nano Editor — Create and Merge Two Files
+
+Date: 31/08/26 | Experiment No.: 4(b)
+
+## Aim - Working with the Nano editor to create and merge two files.
+
+## Requirements - Ubuntu/Linux terminal, Nano text editor.
+
+## Procedure
+1. Create the files and enter the contents.
+   ```
+   nano data1.txt
+   ```
+   Type the content. Press `Ctrl + O` and then `Enter` to save the file. Press `Ctrl + X` to exit.
+2. Save the file using `Ctrl + O` and press `Enter` to confirm.
+3. Create another file using Nano.
+   ```
+   nano data2.txt
+   ```
+4. Enter the required content, save the file and exit Nano.
+5. Again, save the file and exit the Nano editor.
+6. Now, display both files using the `cat` command.
+   ```
+   cat data1.txt
+   cat data2.txt
+   ```
+7. To merge both files into a single file, use:
+   ```
+   cat data1.txt data2.txt > final.txt
+   ```
+   The contents of both files will be combined in `final.txt`.
+8. Finally, check the merged file using:
+   ```
+   cat final.txt
+   ```
+   This displays the contents of the two files merged into `final.txt`.
+
+## Commands:
+```
+$ nano data1.txt
+$ cat data1.txt
+$ nano data2.txt
+$ cat data2.txt
+$ cat data1.txt
+$ cat data2.txt > final.txt
+$ cat final.txt
+```
+
+## Result - Two text files were successfully created and edited using the Nano editor, and their contents were merged into a single file using the `cat` (concatenate) command.
