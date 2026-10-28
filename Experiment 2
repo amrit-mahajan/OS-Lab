@@ -1,0 +1,195 @@
+## Experiment 2(a): Working with Basic Bash Commands
+
+Date: 19/08/2026
+
+### Aim - To study and practise basic Bash commands used for file and directory management in Linux.
+
+### 1. `pwd` — Print Working Directory - Displays the present working directory.
+Options/Features:
+- `pwd -L`: Displays the logical path.
+  - Example: `pwd -L`
+- `pwd -P`: Displays the physical path, resolving symbolic links.
+  - Example: `pwd -P`
+- `pwd --help`: Displays help information.
+  - Example: `pwd --help`
+
+### 2. `ls` — List Directory Contents - Lists the files and directories present in the current directory.
+Options/Features:
+- `ls -l`: Displays detailed information about files and directories.
+  - Example: `ls -l`
+- `ls -a`: Displays all files, including hidden files.
+  - Example: `ls -a`
+- `ls -lt`: Displays detailed information and sorts by modification time, newest first.
+  - Example: `ls -lt`
+
+### 3. `cd` — Change Directory - Changes the current working directory.
+Options/Features:
+- `cd ..`: Moves to the parent directory.
+  - Example: `cd ..`
+- `cd [directory_name]`: Changes the current directory to the specified directory.
+  - Example: `cd Videos`
+- `cd`: Changes the current directory to the user's home directory.
+  - Example: `cd`
+
+### 4. `mkdir` — Make Directory - Used to create a new directory.
+Options/Features:
+- `mkdir -v [name]`: Creates a directory and displays a message.
+  - Example: `mkdir -v Test`
+- `mkdir -m [mode] [name]`: Sets the permissions of the new directory.
+  - Example: `mkdir -m 755 Videos`
+- `mkdir -p [name]`: Creates parent directories if they do not exist.
+  - Example: `mkdir -p College/CSE/Lab`
+
+### 5. `rmdir` — Remove Directory - Used to remove an empty directory.
+Options/Features:
+- `rmdir -p [name]`: Removes the specified empty directory and its empty parent directories.
+  - Example: `rmdir -p College/CSE/Lab`
+- `rmdir -v [name]`: Removes a directory and displays a message.
+  - Example: `rmdir -v Test`
+Note: The `rmdir` command only removes empty directories.
+
+### 6. `rm` — Remove Files and Directories - Used to remove files and, with suitable options, directories.
+Options/Features:
+- `rm -i [file_name]`: Asks for confirmation before deleting a file.
+  - Example: `rm -i file.txt`
+- `rm -r [directory_name]`: Removes directories and their contents recursively.
+  - Example: `rm -r Test`
+- `rm -f [file_name]`: Forces deletion without confirmation.
+  - Example: `rm -f file.txt`
+Note: Use `rm -r` and `rm -f` carefully because deleted data may not be recoverable.
+
+### 7. `touch` — Create or Update a File - Used to create an empty file or update its timestamps.
+Options/Features:
+- `touch -a [file_name]`: Updates the access time.
+  - Example: `touch -a file.txt`
+- `touch -m [file_name]`: Updates the modification time.
+  - Example: `touch -m doc.txt`
+- `touch [file_name]`: Creates a new empty file if it does not exist.
+  - Example: `touch file.txt`
+
+### 8. `cp` — Copy Files and Directories - Used to copy files and directories.
+Options/Features:
+- `cp -i [source] [destination]`: Asks for confirmation before overwriting a file.
+  - Example: `cp -i file.txt doc.txt`
+- `cp -v [source] [destination]`: Displays information about the copying process.
+  - Example: `cp -v file.txt Docs/`
+- `cp -r [source] [destination]`: Copies directories and their contents recursively.
+  - Example: `cp -r Music Songs`
+
+### 9. `mv` — Move or Rename Files and Directories - Used to move or rename files and directories.
+Options/Features:
+- `mv -i [source] [destination]`: Asks for confirmation before overwriting.
+  - Example: `mv -i file.txt Docs/`
+- `mv -v [source] [destination]`: Displays information about the moving process.
+  - Example: `mv -v file.txt Docs/`
+- `mv -f [source] [destination]`: Forces the move without prompting for confirmation.
+  - Example: `mv -f file.txt Docs/`
+
+### 10. `head` — Display the Beginning of a File - Displays the beginning of a file, showing the first 10 lines by default.
+Options/Features:
+- `head -n [number] [file_name]`: Displays the specified number of lines.
+  - Example: `head -n 3 file.txt`
+- `head -c [number] [file_name]`: Displays the specified number of bytes from the beginning.
+  - Example: `head -c 10 file.txt`
+
+### 11. `tail` — Display the End of a File - Displays the end of a file, showing the last 10 lines by default.
+Options/Features:
+- `tail -n [number] [file_name]`: Displays the specified number of last lines.
+  - Example: `tail -n 3 file.txt`
+- `tail -c [number] [file_name]`: Displays the specified number of bytes from the end.
+  - Example: `tail -c 10 file.txt`
+
+### Result - The basic Bash commands used for directory navigation, listing files, creating and removing files and directories, copying and moving files, and viewing file contents were studied and practised.
+
+
+# Experiment 2(b): Hierarchical Directory Management
+
+Date: 19/08/2026
+
+### Aim - To create and manage a hierarchical directory structure using basic Linux commands.
+
+### Procedure/Commands
+Execute the following commands one by one in the terminal.
+Step 1: Create the main directory
+```
+mkdir Sem-3
+```
+Step 2: Enter the main directory
+```
+cd Sem-3
+```
+Step 3: Create subject directories
+```
+mkdir COA OS Cyber HSMC
+```
+Step 4: Create Theory and Practical directories
+```
+mkdir -p COA/Theory COA/Practical
+mkdir -p OS/Theory OS/Practical
+mkdir -p Cyber/Theory Cyber/Practical
+mkdir -p HSMC/Theory HSMC/Practical
+```
+Step 5: Create the Lab directory under OS
+```
+mkdir -p OS/Lab
+```
+Step 6: Create sample files
+```
+touch COA/Theory/notes.txt
+touch COA/Practical/record.txt
+
+touch OS/Theory/notes.txt
+touch OS/Practical/record.txt
+touch OS/Lab/lab-work.txt
+
+touch Cyber/Theory/notes.txt
+touch Cyber/Practical/record.txt
+
+touch HSMC/Theory/notes.txt
+touch HSMC/Practical/record.txt
+```
+Step 7: Display the directory structure
+```
+tree
+```
+If the `tree` command is unavailable, use:
+```
+find . -print
+```
+
+### Structure Representation
+
+```
+Sem-3/
+├── COA/
+│   ├── Theory/
+│   │   └── notes.txt
+│   └── Practical/
+│       └── record.txt
+├── OS/
+│   ├── Theory/
+│   │   └── notes.txt
+│   ├── Practical/
+│   │   └── record.txt
+│   └── Lab/
+│       └── lab-work.txt
+├── Cyber/
+│   ├── Theory/
+│   │   └── notes.txt
+│   └── Practical/
+│       └── record.txt
+└── HSMC/
+    ├── Theory/
+    │   └── notes.txt
+    └── Practical/
+        └── record.txt
+```
+
+### Useful Navigation Commands:
+- `cd COA` — Enters the COA directory.
+- `cd Theory` — Enters the Theory directory.
+- `cd ..` — Moves to the parent directory.
+- `cd ../OS` — Moves to the parent directory and then enters OS.
+- `cd ~` — Moves to the user's home directory.
+
+### Result - A hierarchical directory structure containing subject folders, Theory and Practical subdirectories, and sample files was created and displayed using Linux commands.
