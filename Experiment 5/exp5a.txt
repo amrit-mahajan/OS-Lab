@@ -1,0 +1,14 @@
+# ==============================================================================
+# Experiment 5(a): File vs Directory Classifier Shell Script
+# Algorithm: Evaluates if argument ($1) is a regular file (-f) or directory (-d)
+# ==============================================================================
+
+#!/bin/bash
+
+if [ -f "$1" ]; then
+    echo "$1 is a file"
+elif [ -d "$1" ]; then
+    echo "$1 is a directory"
+else
+    echo "$1 does not exist"
+fi

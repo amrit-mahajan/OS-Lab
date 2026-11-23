@@ -1,0 +1,41 @@
+#!/bin/bash
+# ==============================================================================
+# Experiment 9: CPU-Bound vs I/O-Bound Process Execution & Monitoring
+# Compiles cpu.c and io.c, executes both in background, and demonstrates
+# monitoring with 'top' and memory mapping inspection with 'pmap -x'.
+# ==============================================================================
+
+echo "======================================================"
+echo "Experiment 9: CPU vs I/O Bound Process Benchmark"
+echo "======================================================"
+
+# 1. Compile C programs
+gcc cpu.c -o cpu
+gcc io.c -o io
+
+# 2. Launch CPU-bound process in background
+./cpu &
+CPU_PID=$!
+echo "CPU-bound process started with PID: $CPU_PID"
+
+# 3. Launch I/O-bound process in background
+./io &
+IO_PID=$!
+echo "I/O-bound process started with PID: $IO_PID"
+
+echo -e "\nAllowing processes to stabilize for 3 seconds..."
+sleep 3
+
+echo -e "\n[1] Process status from 'ps aux':"
+ps aux | grep -E "$CPU_PID|$IO_PID" | grep -v grep
+
+echo -e "\n[2] Virtual Memory mapping for CPU-bound process (PID: $CPU_PID):"
+pmap -x $CPU_PID | head -n 15
+
+echo -e "\n[3] Virtual Memory mapping for I/O-bound process (PID: $IO_PID):"
+pmap -x $IO_PID | head -n 15
+
+# Clean-up
+echo -e "\nTerminating test processes..."
+kill $CPU_PID $IO_PID
+echo "Killed PID $CPU_PID and PID $IO_PID."

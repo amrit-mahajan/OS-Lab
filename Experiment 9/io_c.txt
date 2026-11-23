@@ -1,0 +1,19 @@
+/*
+ * ==============================================================================
+ * Experiment 9: I/O-Bound Process in C (io.c)
+ * Spends execution time sleeping/waiting to demonstrate negligible CPU usage (<1%)
+ * in top and analyze memory layout using pmap -x.
+ * ==============================================================================
+ */
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+    printf("I/O-bound process started. Sleeping in loop...\n");
+    while (1) {
+        sleep(1);
+    }
+    return 0;
+}

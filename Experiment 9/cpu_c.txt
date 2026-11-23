@@ -1,0 +1,19 @@
+/*
+ * ==============================================================================
+ * Experiment 9: CPU-Bound Process in C (cpu.c)
+ * Executes an intensive computational loop to demonstrate ~100% CPU utilization
+ * in top and analyze memory layout using pmap -x.
+ * ==============================================================================
+ */
+
+#include <stdio.h>
+
+int main()
+{
+    printf("CPU-bound process started. Consuming CPU cycles...\n");
+    volatile unsigned long long counter = 0;
+    while (1) {
+        counter++;
+    }
+    return 0;
+}

@@ -1,0 +1,35 @@
+#!/bin/bash
+# ==============================================================================
+# Experiment 4: Linux Process Management Commands & Text Editing
+# Commands: ps, ps aux, top, pgrep, kill, &, jobs, nano, vi
+# ==============================================================================
+
+echo "======================================================"
+echo "Experiment 4: Linux Process Management Demonstration"
+echo "======================================================"
+
+echo -e "\n[1] Check running processes in current session (ps):"
+ps
+
+echo -e "\n[2] Display all system processes (ps aux | head -n 10):"
+ps aux | head -n 10
+
+echo -e "\n[3] Start a mock background process (sleep 60 &):"
+sleep 60 &
+BG_PID=$!
+echo "Background Process Started with PID: $BG_PID"
+
+echo -e "\n[4] View active background jobs (jobs):"
+jobs
+
+echo -e "\n[5] Find process PID by name (pgrep sleep):"
+pgrep -l sleep
+
+echo -e "\n[6] Terminate the background process (kill $BG_PID):"
+kill $BG_PID
+echo "Sent termination signal to PID $BG_PID"
+
+# Verification
+sleep 1
+echo -e "\n[7] Verifying termination status (jobs):"
+jobs

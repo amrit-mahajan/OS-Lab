@@ -1,0 +1,34 @@
+#!/bin/bash
+# ==============================================================================
+# Experiment 2(a): Working with Basic Bash Commands
+# Commands demonstrated: pwd, ls, cd, mkdir, rmdir, rm, touch
+# ==============================================================================
+
+echo "======================================================"
+echo "Experiment 2(a): Basic Bash Commands Demonstration"
+echo "======================================================"
+
+echo -e "\n[1] Print Working Directory (pwd):"
+echo "Logical Path: $(pwd -L)"
+echo "Physical Path: $(pwd -P)"
+
+echo -e "\n[2] Directory Listing (ls):"
+echo "-- Long format (ls -l):"
+ls -l
+echo "-- All files including hidden (ls -a):"
+ls -a
+echo "-- Sorted by time (ls -lt):"
+ls -lt
+
+echo -e "\n[3] Directory Creation & Path Navigation (mkdir & cd):"
+mkdir -v -p demo_exp2/test_dir
+touch demo_exp2/sample_file.txt
+ls -l demo_exp2
+
+echo -e "\n[4] File Timestamps & Modification (touch):"
+touch -a demo_exp2/sample_file.txt
+touch -m demo_exp2/sample_file.txt
+
+echo -e "\n[5] Clean-up Operations (rm & rmdir):"
+rm -v demo_exp2/sample_file.txt
+rmdir -v -p demo_exp2/test_dir

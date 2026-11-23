@@ -1,0 +1,22 @@
+# ==============================================================================
+# Experiment 7: String Operations in Shell Script
+# Operations:
+#   - Calculates length of string using parameter expansion ${#str}
+#   - Extracts substring using shell slicing ${str:start:length}
+# ==============================================================================
+
+#!/bin/bash
+
+echo "Enter a String:"
+read str
+
+echo "Length of String: ${#str}"
+
+echo "Enter String Position:"
+read start
+
+echo "Enter Number of characters:"
+read length
+
+echo -n "Substring: "
+echo "${str:$start:$length}"

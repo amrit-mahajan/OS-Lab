@@ -1,0 +1,28 @@
+# ==============================================================================
+# Experiment 3(b): Stream Text Transformation with Sed
+# Uses sed to swap the first and second words of each line in a file.
+# Command: sed -i 's/^\([^ ]*\) \(.*\)$/\2 \1/' name.txt
+# ==============================================================================
+
+#!/bin/bash
+
+echo "======================================================"
+echo "Experiment 3(b): Swap First & Second Words via Sed"
+echo "======================================================"
+
+# Create sample input file
+cat << 'EOF' > name.txt
+Mirza Younis
+Operating System
+Hello World
+Linux Kernel
+EOF
+
+echo "Original contents of name.txt:"
+cat name.txt
+
+echo -e "\nExecuting sed command to swap words..."
+sed -i 's/^\([^ ]*\) \(.*\)$/\2 \1/' name.txt
+
+echo -e "\nModified contents of name.txt (swapped words):"
+cat name.txt
